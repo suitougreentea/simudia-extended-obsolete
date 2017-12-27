@@ -7,7 +7,7 @@ import com.beust.klaxon.int
 import java.io.*
 
 object DiagramRdwr {
-  val currentVersion = 1
+  const val CURRENT_VERSION = 1
 
   fun read(file: File): Diagram {
     return DiagramReader(file).read()
@@ -31,7 +31,7 @@ class DiagramReader(val file: File) {
 
 class DiagramWriter(val file: File, val diagram: Diagram) {
   fun write() {
-    val json = JsonObject(mapOf("_simudiaex_version" to DiagramRdwr.currentVersion) + diagram.write(this))
+    val json = JsonObject(mapOf("_simudiaex_version" to DiagramRdwr.CURRENT_VERSION) + diagram.write(this))
     val string = json.toJsonString(true)
     val writer = FileWriter(file)
     writer.write(string)
